@@ -1,0 +1,164 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{../fragments/head-frag :: head}"></th:block>
+<body class="bg-dark text-white">
+
+	<th:block th:replace="~{../fragments/header :: header}"></th:block>
+	
+	<div class="container d-flex flex-column py-5">
+	
+		<h1>
+			<span th:text="${pizza.id < 1 ? 'CREA NUOVA' : 'MODIFICA'}"></span> PIZZA
+		</h1>
+		
+		<form
+			th:object="${pizza}"
+			method="POST"
+			>
+			
+			<div class="d-flex justify-content-between">
+			
+				<div class="mb-3 pe-3 w-25">
+				
+					<label for="nome" class="form-label">Nome</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="nome" name="nome" 
+						th:field="*{nome}" 
+						th:errorClass="is-invalid"
+						placeholder="Inserire il nome">
+					
+					<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+						<ul>
+							<li th:each="err : ${#fields.errors('nome')}" th:text="${err}"></li>
+						</ul>
+					</div>
+				
+				</div>
+				
+				
+				<div class="mb-3 pe-3 w-75">
+				
+					<label for="descrizione" class="form-label">Descrizione</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="descrizione" name="descrizione" 
+						th:field="*{descrizione}" 
+						th:errorClass="is-invalid"
+						placeholder="Inserire la descrizione">
+						
+	<!-- 				<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback"> -->
+	<!-- 					<ul> -->
+	<!-- 						<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}"></li> -->
+	<!-- 					</ul> -->
+	<!-- 				</div> -->
+				
+				</div>
+				
+			</div>
+			
+			<div class="my-3">
+			
+				<span>Ingredienti: </span>
+				
+				<div 
+					class="btn-group" 
+					role="group" 
+					aria-label="Basic checkbox toggle button group"
+					th:each="ingredient : ${ingredients}"
+					th:object="${ingredient}">
+					
+<!-- 				  <input  -->
+<!-- 				  	type="checkbox"  -->
+<!-- 				  	class="btn-check"  -->
+<!-- 				  	th:id="${'ingredient-' + ingredient.id}" -->
+<!-- 				  	th:value="*{id}" -->
+<!-- 				  	th:field="${pizza.ingredients}" -->
+<!-- 				  > -->
+<!-- 				  <label  -->
+<!-- 				  	class="btn btn-outline-primary rounded text-capitalize mx-1"  -->
+<!-- 				  	th:for="${'ingredient-' + ingredient.id}">[[*{nome}]]</label> -->
+
+<!-- 	TODO: sistemare la grafica della chechbox -->
+
+					<input 
+						type="checkbox"
+						th:id="${'ingredient-' + ingredient.id}" 
+						th:value="*{id}"
+						th:field="${pizza.ingredients}"
+					>
+					<label 
+						class="btn btn-outline-primary rounded text-capitalize mx-1"
+						th:for="${'ingredient-' + ingredient.id}">
+						[[*{nome}]]
+					</label>
+				  
+				</div>
+			</div>
+			
+			
+			<div class="d-flex justify-content-between">
+				
+				<div class="mb-3 pe-3 d-inline-block w-25">
+				
+					<label for="prezzo" class="form-label">Prezzo</label>
+					<input 
+						type="number"
+						step="0.01" 
+						min="0.00"
+						class="form-control" 
+						id="prezzo" name="prezzo" 
+						th:field="*{prezzo}" 
+						th:errorClass="is-invalid"
+						placeholder="Inserire il prezzo">
+				<!-- /*		type="number" 
+							step="0.01" 
+							min="0.00" */ -->
+							
+						<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback"> 
+							<ul>
+								<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}"></li>
+							</ul>
+						</div> 
+				</div>
+				
+				<div class="mb-3 pe-3 d-inline-block w-75">
+				
+					<label for="foto" class="form-label">Foto</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="foto" name="foto" 
+						th:field="*{foto}" 
+						th:errorClass="is-invalid"
+						placeholder="Inserire il link della foto">
+						
+					<div th:if="${#fields.hasErrors('foto')}" class="invalid-feedback"> 
+						<ul>
+							<li th:each="err : ${#fields.errors('foto')}" th:text="${err}"></li>
+						</ul>
+					</div> 
+						
+					
+					<div th:if="${foto_unique}" class="text-danger mt-2">
+						[[${foto_unique}]] 
+					</div>
+				 
+				
+				</div>
+				
+			</div>
+			
+			
+			<button type="submit" class="btn btn-primary">Invia</button>
+			
+		</form>
+		
+	</div>
+
+<!--  <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script> -->
+<!--   <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.min.js}"></script> -->
+	
+</body>
+</html>

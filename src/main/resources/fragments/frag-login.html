@@ -1,0 +1,16 @@
+<div th:fragment="login">
+	<h1
+		sec:authorize="hasAnyAuthority('USER', 'ADMIN')"
+	>
+		
+		<span sec:authentication="name"></span> 
+		 - 
+		<a href="/logout">LOGOUT</a>
+	</h1>
+	<h1
+		sec:authorize="!hasAnyAuthority('USER', 'ADMIN')"
+	>
+		
+		<a href="/login">LOGIN</a> 
+	</h1>
+</div>

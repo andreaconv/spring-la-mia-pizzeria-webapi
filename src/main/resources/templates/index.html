@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{../fragments/head-frag :: head}"></th:block>
+<body class="bg-dark text-white">
+
+	<th:block th:replace="~{../fragments/header :: header}"></th:block>
+
+	<div class="container text-center py-5">
+	
+		<th:block th:replace="~{../fragments/frag-login.html :: login}"></th:block>
+	
+		<h2>HOME</h2>
+		
+		<ul>
+			<li
+				th:each="pizza : ${pizze}"
+				th:object="${pizza}"
+			>
+				[[*{nome}]]
+				<a th:href="@{/pizze/{id}(id=*{id})}">
+					Mostra
+				</a>
+			</li>
+		
+		</ul>
+	
+	</div>
+
+
+</body>
+</html>

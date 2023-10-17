@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{../fragments/head-frag :: head}"></th:block>
+<body class="bg-dark text-white">
+
+	<th:block th:replace="~{../fragments/header :: header}"></th:block>
+
+	<div class="container text-center py-5">
+		
+		<h2 class="text-danger" th:if="${ingredients.size() < 1}">
+			NON CI SONO INGREDIENTI
+		</h2>
+		
+		<div class="menu d-flex flex-column align-items-center mx-5" th:if="${ingredients.size() > 0}">
+		
+			<h2 class="mb-3">INGREDIENTI</h2>
+		
+			<table class="table table-striped table-dark w-50">
+				<thead>
+					<tr>
+						<th scope="col">Nome</th>
+						<th scope="col">Dettagli</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						th:each="ingredient : ${ingredients}"
+						th:object="${ingredient}"
+						>
+						<td class="text-capitalize">[[*{nome}]]</td>
+						<td>						
+							<a title="Modifica" th:href="@{/ingredients/update/{id}(id=*{id})}">
+								<span class="btn btn-warning">
+									<i class="fa-solid fa-pencil text-white"></i>
+								</span>
+							</a>
+							
+							<form 
+								th:action="@{/ingredients/delete/{id}(id=*{id})}" 
+								method="POST"
+								title="Elimina"
+								class="d-inline"
+								>
+								<button type="submit" class="btn btn-danger">
+									<i class="fa-solid fa-trash-can"></i>
+								</button>
+							</form>
+							
+							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	
+	</div>
+
+
+</body>
+</html>

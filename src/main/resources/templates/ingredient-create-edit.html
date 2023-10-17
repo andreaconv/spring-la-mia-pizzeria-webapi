@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{../fragments/head-frag :: head}"></th:block>
+<body class="bg-dark text-white">
+
+	<th:block th:replace="~{../fragments/header :: header}"></th:block>
+	
+	<div class="container d-flex flex-column py-5">
+	
+		<h1>
+			<span th:text="${ingredient.id < 1 ? 'INSERISCI NUOVO' : 'MODIFICA'}"></span> INGREDIENTE
+		</h1>
+		
+		<form
+			th:object="${ingredient}"
+			method="POST"
+			>
+			
+			<div class="d-flex justify-content-between">
+			
+				<div class="mb-3 pe-3 w-25">
+				
+					<label for="nome" class="form-label">Nome</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="nome" name="nome" 
+						th:field="*{nome}" 
+						th:errorClass="is-invalid"
+						placeholder="Inserire il nome">
+					
+					<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+						<ul>
+							<li th:each="err : ${#fields.errors('nome')}" th:text="${err}"></li>
+						</ul>
+					</div>
+				
+				</div>
+				
+			</div>
+			
+			
+			<button type="submit" class="btn btn-primary">Invia</button>
+			
+		</form>
+		
+	</div>
+
+	
+</body>
+</html>

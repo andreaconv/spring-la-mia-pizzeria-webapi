@@ -1,0 +1,22 @@
+<header >
+
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container-fluid d-flex justify-content-evenly">
+			<div>
+				<a class="nav-link active" aria-current="page" href="/">LOGO - HOME</a>
+			</div>
+<!-- 			<h1>Pizzeria da <span th:text="${name}"></span></h1> -->
+			<h1>Pizzeria da Andrea</h1>
+	
+			<div sec:authorize="hasAnyAuthority('ADMIN')" class="navbar-nav">
+				<a class="nav-link" href="/pizze">Pizze</a>
+				<a class="nav-link" href="/pizze/create">Nuova Pizza</a>
+				<a class="nav-link" href="/ingredients">Ingredienti</a>
+				<a class="nav-link" href="/ingredients/create">Nuovo Ingrediente</a>
+				<a class="nav-link active" aria-current="page" href="/">Home</a>
+			</div>
+
+		</div>
+	</nav>
+
+</header>

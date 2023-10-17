@@ -1,0 +1,93 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{../fragments/head-frag :: head}"></th:block>
+<body class="bg-dark text-white">
+
+	<th:block th:replace="~{../fragments/header :: header}"></th:block>
+	
+	<div class="container d-flex flex-column py-5">
+	
+		<h1>
+			<span class="text-capitalize">[[${pizza.nome}]]: </span> 
+			<span th:text="${special.id < 1 ? 'CREA NUOVA' : 'MODIFICA'}"></span> OFFERTA!
+		</h1>
+		
+		<form
+			th:object="${special}"
+			method="POST"
+			>
+			<div class="d-flex my-4">
+			
+			
+				<div class="mb-3 pe-3 w-25">
+				
+					<label for="titolo" class="form-label">Titolo</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="titolo" name="titolo" 
+						th:field="*{titolo}" 
+						th:errorClass="is-invalid"
+						placeholder="Inserire il titolo">
+						
+<!-- /*			TODO: controllare la stampa degli errori, inserire il try catch nel metodo di salvataggio */-->
+					
+					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+						<ul>
+							<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
+						</ul>
+					</div>
+				
+				</div>
+				
+				
+				<div class="mb-3 pe-3 w-25">
+				
+					<label for="specialDate" class="form-label">Data inizio</label>
+					<input 
+						type="date" 
+						class="form-control" 
+						id="specialDate" name="specialDate" 
+						th:field="*{htmlStartDate}" 
+						th:errorClass="is-invalid"
+						placeholder="Inserire la data di inizio">
+					
+					<div th:if="${#fields.hasErrors('specialDate')}" class="invalid-feedback">
+						<ul>
+							<li th:each="err : ${#fields.errors('specialDate')}" th:text="${err}"></li>
+						</ul>
+					</div>
+				
+				</div>
+				
+				
+				<div class="mb-3 pe-3 w-25">
+				
+					<label for="returnDate" class="form-label">Data fine</label>
+					<input 
+						type="date" 
+						class="form-control" 
+						id="returnDate" name="returnDate" 
+						th:field="*{htmlEndDate}" 
+						th:errorClass="is-invalid"
+						placeholder="Inserire la data di inizio">
+					
+					<div th:if="${#fields.hasErrors('returnDate')}" class="invalid-feedback">
+						<ul>
+							<li th:each="err : ${#fields.errors('returnDate')}" th:text="${err}"></li>
+						</ul>
+					</div>
+				
+				</div>
+			</div>
+			
+			
+			
+			<button type="submit" class="btn btn-primary">Invia</button>
+			
+		</form>
+		
+	</div>
+
+	
+</body>
+</html>

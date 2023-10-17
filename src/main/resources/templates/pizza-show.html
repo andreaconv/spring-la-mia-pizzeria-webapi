@@ -1,0 +1,81 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{../fragments/head-frag :: head}"></th:block>
+<body class="bg-dark text-white" th:object="${pizza}">
+
+	<th:block th:replace="~{../fragments/header :: header}"></th:block>
+	
+	<div class="container d-flex justify-content-center py-5">
+	
+		<div class="card pizza" style="width: 30%;">
+			<img th:alt="*{nome}" th:src="*{foto}" th:unless="*{foto.empty}" class="card-img-top" width="30%">
+			<img src="/images/placeholder.jpg" th:if="*{foto.empty}" class="card-img-top" width="30%">
+			<div class="card-body">
+				<h3 class="card-title text-capitalize">[[*{nome}]]</h3>
+				<p class="card-text">
+					<h4>Descrizione: </h4>
+					<span>[[*{descrizione}]]</span>
+				</p>
+				<p class="card-text">
+					<h4>Ingredienti: </h4>
+					<span
+						class="badge text-bg-info text-capitalize me-1"
+						th:each="ing : *{ingredients}"
+						th:object="${ing}"
+					>[[*{nome}]]</span>
+				</p>
+				<h5 class="d-inline">Prezzo: </h5>
+				<span>€ [[*{getFormattedPrice()}]]</span> <br>	
+				
+<!-- /*				ELEMENTI DELLA TABELLA SPECIALS */ -->
+				<div th:if="*{specials.size()} > 0">
+				
+					<h4 class="text-danger my-2">OFFERTE SPECIALI!</h4>
+					<ul class="ps-0 mb-3 bg-success-subtle" >
+					
+						<li
+							th:each="special : *{specials}"
+							th:object="${special}"
+							class="border border-black text-capitalize py-2"
+						>
+							[[*{titolo}]] <br>
+<!-- 						TODO: modificare la visualizzazione della data  -->
+							[[*{specialDate}]] ~ [[*{returnDate}]] 
+							<div sec:authorize="hasAnyAuthority('ADMIN')" class="d-inline float-end">
+							
+								<a title="Modifica" th:href="@{/pizze/special/edit/{id}(id=*{id})}">
+									<span class="btn btn-warning mx-2">
+										<i class="fa-solid fa-pencil text-white"></i>
+									</span>
+								</a>
+								
+								<form 
+								th:action="@{/pizze/special/delete/{id}(id=*{id})}" 
+								method="POST"
+								title="Elimina"
+								class="d-inline me-2"
+								>
+								<button type="submit" class="btn btn-danger">
+									<i class="fa-solid fa-trash-can"></i>
+								</button>
+							</form>
+							</div>
+						</li>
+					
+					</ul>
+				</div>
+				
+				<div
+					sec:authorize="hasAnyAuthority('ADMIN')"
+					>
+					<a href="/pizze" class="btn btn-primary mt-2">Menu pizze</a>
+					<a th:href="@{/pizze/special/{id}(id=*{id})}" class="btn btn-secondary float-end mt-2">Sponsorizza</a>
+				</div>
+				
+			</div>
+		</div>
+	
+	</div>
+	
+
+</body>
+</html>
