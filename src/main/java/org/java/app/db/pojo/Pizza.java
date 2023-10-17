@@ -89,6 +89,13 @@ public class Pizza {
 		setDescrizione(pizzaDTO.getDescrizione());
 		setPrezzo(pizzaDTO.getPrezzo());
 	}
+	
+	public void fillFromDto(PizzaDTO pizzaDto) {
+		
+		setNome(pizzaDto.getNome());
+		setDescrizione(pizzaDto.getDescrizione());
+		setPrezzo(pizzaDto.getPrezzo());
+	}
 
 	//ID
 	public int getId() {

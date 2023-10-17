@@ -70,6 +70,28 @@ public class PizzaApiController {
 		return new ResponseEntity<>(pizza, HttpStatus.OK);
 	}
 	
+	//MODIFICO E SALVO UNA NUOVA PIZZA
+	@PostMapping("{id}")
+	public ResponseEntity<Pizza> updatePizza(
+			@PathVariable int id,
+			@RequestBody PizzaDTO pizzaDto
+		) {
+		
+		Optional<Pizza> optPizza = Optional.ofNullable(pizzaService.findById(id));
+		
+		if (optPizza.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		Pizza pizza = optPizza.get();
+		pizza.fillFromDto(pizzaDto);
+		
+		pizza = pizzaService.save(pizza);
+		
+		return new ResponseEntity<>(pizza, HttpStatus.OK);
+	}
+	
+	
+	
 	
 
 }
