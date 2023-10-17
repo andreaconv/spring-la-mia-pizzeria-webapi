@@ -14,9 +14,9 @@ public class PizzaService {
 	private PizzaRepo pizzaRepo;
 	
 	//INSERT
-	public void save(Pizza pizza) {
+	public Pizza save(Pizza pizza) {
 		
-		pizzaRepo.save(pizza);
+		return pizzaRepo.save(pizza);
 	}
 	
 	//FIND ALL

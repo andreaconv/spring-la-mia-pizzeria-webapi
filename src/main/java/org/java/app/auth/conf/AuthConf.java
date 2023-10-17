@@ -17,15 +17,17 @@ public class AuthConf {
 	SecurityFilterChain filterChain(HttpSecurity http)
 		throws Exception {
 			 
-			http.authorizeHttpRequests()
-				.requestMatchers("/login").permitAll()
-				.requestMatchers("/api/**").permitAll()
-		        .requestMatchers("/").hasAnyAuthority("USER", "ADMIN")
-		        .requestMatchers(new RegexRequestMatcher("/pizze/[0-9]+", null)).hasAnyAuthority("USER", "ADMIN")
-		        /* protegge le rotte e ti fa accedere solo se sei ADMIN*/
-		        .requestMatchers("/pizze/**").hasAuthority("ADMIN")
-		        .requestMatchers("/pizze/delete/**").hasAuthority("ADMIN")
-		        .requestMatchers("/ingredients/**").hasAuthority("ADMIN")
+			http.csrf().disable()
+				.authorizeHttpRequests()
+				.requestMatchers("/**").permitAll()
+//				.requestMatchers("/login").permitAll()
+//				.requestMatchers("/api/**").permitAll()
+//		        .requestMatchers("/").hasAnyAuthority("USER", "ADMIN")
+//		        .requestMatchers(new RegexRequestMatcher("/pizze/[0-9]+", null)).hasAnyAuthority("USER", "ADMIN")
+//		        /* protegge le rotte e ti fa accedere solo se sei ADMIN*/
+//		        .requestMatchers("/pizze/**").hasAuthority("ADMIN")
+//		        .requestMatchers("/pizze/delete/**").hasAuthority("ADMIN")
+//		        .requestMatchers("/ingredients/**").hasAuthority("ADMIN")
 		        .and().formLogin()
 		        .and().logout();
 			
