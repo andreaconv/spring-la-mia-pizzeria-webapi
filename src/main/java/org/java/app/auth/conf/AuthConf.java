@@ -16,16 +16,17 @@ public class AuthConf {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http)
 		throws Exception {
-		
-//		FIXME: il ".defaultSuccessUrl("/pizze")" non funziona
 			 
 			http.authorizeHttpRequests()
 				.requestMatchers("/login").permitAll()
+				.requestMatchers("/api/**").permitAll()
 		        .requestMatchers("/").hasAnyAuthority("USER", "ADMIN")
 		        .requestMatchers(new RegexRequestMatcher("/pizze/[0-9]+", null)).hasAnyAuthority("USER", "ADMIN")
-		        .requestMatchers("/pizze/**").hasAuthority("ADMIN")/* protegge le rotte e ti fa accedere solo se sei ADMIN*/
+		        /* protegge le rotte e ti fa accedere solo se sei ADMIN*/
+		        .requestMatchers("/pizze/**").hasAuthority("ADMIN")
+		        .requestMatchers("/pizze/delete/**").hasAuthority("ADMIN")
 		        .requestMatchers("/ingredients/**").hasAuthority("ADMIN")
-		        .and().formLogin().defaultSuccessUrl("/pizze")
+		        .and().formLogin()
 		        .and().logout();
 			
 			return http.build();

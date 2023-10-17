@@ -14,6 +14,7 @@
 			<li
 				th:each="pizza : ${pizze}"
 				th:object="${pizza}"
+				class="list-unstyled"
 			>
 				[[*{nome}]]
 				<a th:href="@{/pizze/{id}(id=*{id})}">
