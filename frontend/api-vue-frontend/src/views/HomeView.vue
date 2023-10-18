@@ -2,7 +2,10 @@
 //si usa ref bene o male come i data
 import { onMounted, ref } from 'vue';
 import axios from "axios";
+
 const API_URL = "http://localhost:8080/api/v1.0";
+
+const pizze = ref(null);
 
 onMounted(() => {
 
@@ -10,7 +13,7 @@ onMounted(() => {
         .then(res => {
 
           const data = res.data;
-          console.log("axios data: " + JSON.stringify(data, null, 2));
+          pizze.value = data;
       })
       .catch(err => console.log(err));
 
@@ -20,13 +23,24 @@ onMounted(() => {
 
 <template>
   <main>
-    <h1>HELLO WORLD</h1>
+    <h1>PIZZE</h1>
+    <ul>
+      <li
+        v-for="pizza in pizze"
+        :key="pizza.id"
+      >
+      {{ pizza.nome }}
+      </li>
+    </ul>
   </main>
 </template>
 
 <style scoped>
 main{
   text-align: center;
+}
+ul{
+  list-style: none;
 }
 
 </style>
