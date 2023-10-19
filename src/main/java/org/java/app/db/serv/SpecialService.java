@@ -2,6 +2,7 @@ package org.java.app.db.serv;
 
 import java.util.List;
 
+import org.java.app.db.pojo.Pizza;
 import org.java.app.db.pojo.Special;
 import org.java.app.db.repo.SpecialRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,13 @@ public class SpecialService {
 		
 		return specialRepo.findById(id).get();
 	}
+	
+	public List<Special> findByPizza(Pizza pizza){
+		
+		return specialRepo.findByPizza(pizza);
+	}
+	
+	
 	public void save(Special special) {
 		
 		specialRepo.save(special);

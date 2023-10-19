@@ -168,6 +168,14 @@ public class PizzaController {
 	public String deletePizza(@PathVariable int id) {
 		
 		Pizza pizza = pizzaService.findById(id);
+		
+		//eliminare il collegamento con special prima di eliminare la pizza
+		List<Special> specials = specialService.findByPizza(pizza);
+		for (Special special : specials) {
+			
+			specialService.deleteSpecial(special);
+		}
+		
 		pizzaService.deletePizza(pizza);
 		
 		return "redirect:/pizze";
