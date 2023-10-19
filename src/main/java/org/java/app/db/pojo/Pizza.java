@@ -32,7 +32,7 @@ public class Pizza {
 	@NotBlank(message = "Il nome non può essere vuoto")
 	@Length(
 		min = 3, 
-		max = 255, 
+		max = 128, 
 		message = "Il nome deve essere composte da 3~128 caratteri"
 	)
 	private String nome;
