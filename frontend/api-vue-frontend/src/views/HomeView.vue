@@ -7,9 +7,15 @@ const API_URL = "http://localhost:8080/api/v1.0";
 
 const pizze = ref(null);
 
+const search = ref("");
+
 function getAllPizzas() {
 
-  axios.get(API_URL + "/pizze")
+  let param = "";
+  if (search.value != null && search.value.length > 0)
+    param = "?q=" + search.value;
+
+  axios.get(API_URL + "/pizze" + param)
         .then(res => {
 
           const data = res.data;
@@ -40,6 +46,12 @@ onMounted(() => {
 <template>
   <main>
     <h1>PIZZE</h1>
+    <form 
+      @submit.prevent="getAllPizzas"
+    >
+      <input type="text" name="q" v-model="search" >
+      <input type="submit" value="SEARCH">
+    </form>
     <ul>
       <li
         v-for="pizza in pizze"
