@@ -7,7 +7,7 @@ const API_URL = "http://localhost:8080/api/v1.0";
 
 const pizze = ref(null);
 
-onMounted(() => {
+function getAllPizzas() {
 
   axios.get(API_URL + "/pizze")
         .then(res => {
@@ -16,6 +16,22 @@ onMounted(() => {
           pizze.value = data;
       })
       .catch(err => console.log(err));
+
+}
+
+function pizzaDelete(id) {
+
+  axios.delete(API_URL + "/pizze/" + id)
+      .then(() => {
+
+        getAllPizzas();
+      })
+      .catch(err => console.log(err))
+}
+
+onMounted(() => {
+
+  getAllPizzas();
 
 })
 
@@ -32,6 +48,8 @@ onMounted(() => {
         {{ pizza.nome }}
 
         <a :href="`/edit/${pizza.id}`">MODIFICA</a>
+
+        <button @click="pizzaDelete(pizza.id)">X</button>
       </li>
     </ul>
   </main>
