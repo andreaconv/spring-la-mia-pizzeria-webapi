@@ -12,9 +12,6 @@ const emptyPizza = ref({
 
 const newPizza = ref({...emptyPizza.value});
 
-console.log("empty pizza", emptyPizza.value);
-console.log("new pizza", newPizza.value);
-
 function clearForm() {
   newPizza.value = ref({...emptyPizza.value});
 }
@@ -24,6 +21,8 @@ function storePizza() {
   axios.post(API_URL + "/pizze", newPizza.value)
       .then(() => {clearForm();})
       .catch(err => console.log(err));
+  
+  console.log("pizza creata", newPizza.value);
 }
 
 </script>

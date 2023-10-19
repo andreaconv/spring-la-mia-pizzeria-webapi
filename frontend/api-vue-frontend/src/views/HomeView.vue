@@ -29,7 +29,9 @@ onMounted(() => {
         v-for="pizza in pizze"
         :key="pizza.id"
       >
-      {{ pizza.nome }}
+        {{ pizza.nome }}
+
+        <a :href="`/edit/${pizza.id}`">MODIFICA</a>
       </li>
     </ul>
   </main>
