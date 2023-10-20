@@ -44,28 +44,72 @@ axios.get(API_URL + "/pizze/" + pizzaId.value)
 </script>
 
 <template>
-  <div class="edit">
-    <h1>Edit Pizza</h1>
+
+  <div class="container bg-dark text-white">
+
+    <h1 class="text-center">Edit Pizza</h1>
+
     <form @submit.prevent="storePizza">
 
-      <label for="nome">Name</label>
-      <input type="text" name="nome" placeholder="Name" v-model="oldPizza.nome">
-      <br>
+      <div class="d-flex justify-content-between">
 
-      <label for="descrizione">Description</label>
-      <input type="text" name="descrizione" placeholder="Description" v-model="oldPizza.descrizione">
-      <br>
+        <div class="mb-3 pe-3 w-25">
+        
+          <label for="nome" class="form-label">Nome</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="nome" name="nome" 
+            v-model="oldPizza.nome"
+            placeholder="Inserire il nome">
+        
+        </div>
 
-      <label for="foto">Photos</label>
-      <input type="text" name="foto" placeholder="Photos" v-model="oldPizza.foto">
-      <br>
+        <div class="mb-3 pe-3 w-75">
+        
+          <label for="descrizione" class="form-label">Descrizione</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="descrizione" name="descrizione" 
+            v-model="oldPizza.descrizione"
+            placeholder="Inserire la descrizione">
+        
+        </div>
 
-      <label for="prezzo">Price</label>
-      <input type="number" step="0.01" 
-						min="0.00" name="prezzo" placeholder="Price" v-model="oldPizza.prezzo">
-      <br>
+      </div>
 
-      <input type="submit" value="UPDATE">
+      <div class="d-flex justify-content-between">
+        
+        <div class="mb-3 pe-3 d-inline-block w-25">
+        
+          <label for="prezzo" class="form-label">Prezzo</label>
+          <input 
+            type="number"
+            step="0.01" 
+            min="0.00"
+            class="form-control" 
+            id="prezzo" name="prezzo" 
+            v-model="oldPizza.prezzo"
+            placeholder="Inserire il prezzo">
+
+        </div>
+        
+        <div class="mb-3 pe-3 d-inline-block w-75">
+        
+          <label for="foto" class="form-label">Foto</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="foto" name="foto" 
+            v-model="oldPizza.foto"
+            placeholder="Inserire il link della foto">
+          
+        </div>
+        
+      </div>
+
+      <input type="submit" class="btn btn-primary mb-3 me-3" value="UPDATE">
 
     </form>
   </div>

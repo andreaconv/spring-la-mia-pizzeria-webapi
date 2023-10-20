@@ -3,27 +3,19 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-      <nav>
-        <RouterLink to="/">Pizze</RouterLink>
-        <RouterLink to="/create">New Pizza</RouterLink>
-      </nav>
-  </header>
+  <body class="bg-dark text-white">
+    <header class="bg-dark text-white">
+        <nav class="text-center py-3">
+          <RouterLink to="/">Pizze</RouterLink>
+          <RouterLink to="/create">New Pizza</RouterLink>
+        </nav>
+    </header>
 
-  <RouterView />
+    <RouterView />
+  </body>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-nav {
-  width: 100%;
-  text-align: center;
-  margin-top: 2rem;
-}
-
 nav a.router-link-exact-active {
   color: var(--color-text);
 }
@@ -42,20 +34,4 @@ nav a:first-of-type {
   border: 0;
 }
 
-@media (min-width: 1624px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>

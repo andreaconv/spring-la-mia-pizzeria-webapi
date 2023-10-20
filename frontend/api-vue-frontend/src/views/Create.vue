@@ -28,41 +28,77 @@ function storePizza() {
 </script>
 
 <template>
-  <div class="about">
-    <h1>Create New Pizza</h1>
+
+  <div class="container bg-dark text-white">
+
+    <h1 class="text-center">Create New Pizza</h1>
+
     <form @submit.prevent="storePizza">
 
-      <label for="nome">Name</label>
-      <input type="text" name="nome" placeholder="Name" v-model="newPizza.nome">
-      <br>
+      <div class="d-flex justify-content-between">
 
-      <label for="descrizione">Description</label>
-      <input type="text" name="descrizione" placeholder="Description" v-model="newPizza.descrizione">
-      <br>
+        <div class="mb-3 pe-3 w-25">
+				
+          <label for="nome" class="form-label">Nome</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="nome" name="nome" 
+            v-model="newPizza.nome"
+            placeholder="Inserire il nome">
+        
+        </div>
 
-      <label for="foto">Photos</label>
-      <input type="text" name="foto" placeholder="Photos" v-model="newPizza.foto">
-      <br>
+        <div class="mb-3 pe-3 w-75">
+				
+          <label for="descrizione" class="form-label">Descrizione</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="descrizione" name="descrizione" 
+            v-model="newPizza.descrizione"
+            placeholder="Inserire la descrizione">
+        
+        </div>
 
-      <label for="prezzo">Price</label>
-      <input type="number" step="0.01" 
-						min="0.00" name="prezzo" placeholder="Price" v-model="newPizza.prezzo">
-      <br>
+      </div>
 
-      <input type="submit" value="CREATE">
-      <button @click="clearForm">CANCEL</button>
+      <div class="d-flex justify-content-between">
+				
+				<div class="mb-3 pe-3 d-inline-block w-25">
+				
+					<label for="prezzo" class="form-label">Prezzo</label>
+					<input 
+						type="number"
+						step="0.01" 
+						min="0.00"
+						class="form-control" 
+						id="prezzo" name="prezzo" 
+						v-model="newPizza.prezzo"
+						placeholder="Inserire il prezzo">
+
+				</div>
+				
+				<div class="mb-3 pe-3 d-inline-block w-75">
+				
+					<label for="foto" class="form-label">Foto</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="foto" name="foto" 
+						v-model="newPizza.foto"
+						placeholder="Inserire il link della foto">
+					
+				</div>
+				
+			</div>
+
+      <input type="submit" class="btn btn-primary mb-3 me-3" value="CREATE">
+      <button class="btn btn-danger mb-3" @click="clearForm">CANCEL</button>
 
     </form>
   </div>
 </template>
 
-<style>
-.about{
-  width: 1200px;
-  margin: auto;
-}
-
-h1{
-  text-align: center;
-}
+<style scoped>
 </style>
