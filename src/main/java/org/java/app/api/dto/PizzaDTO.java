@@ -4,14 +4,16 @@ public class PizzaDTO {
 	
 	private String nome;
 	private String descrizione;
+	private String foto;
 	private int prezzo;
 
 	//COSTRUTTORE
 	public PizzaDTO() {}
-	public PizzaDTO(String nome, String descrizione, int prezzo) {
+	public PizzaDTO(String nome, String descrizione, String foto, int prezzo) {
 
 		setNome(nome);
 		setDescrizione(descrizione);
+		setFoto(foto);
 		setPrezzo(prezzo);
 	}
 	public String getNome() {
@@ -26,6 +28,12 @@ public class PizzaDTO {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 	public int getPrezzo() {
 		return prezzo;
 	}
@@ -38,6 +46,7 @@ public class PizzaDTO {
 		
 		return "nome: " + getNome()
 			+ "\ndescrizione: " + getDescrizione()
+			+ "\nfoto: " + getFoto()
 			+ "\nprezzo: " + getPrezzo();
 	}
 

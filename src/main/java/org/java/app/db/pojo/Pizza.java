@@ -83,17 +83,20 @@ public class Pizza {
 		setPrezzo(prezzo);
 		setIngredients(Arrays.asList(ingredients));
 	}
+	//CREATE
 	public Pizza(PizzaDTO pizzaDTO) {
 
 		setNome(pizzaDTO.getNome());
 		setDescrizione(pizzaDTO.getDescrizione());
+		setFoto(pizzaDTO.getFoto());
 		setPrezzo(pizzaDTO.getPrezzo());
 	}
-	
+	//EDIT
 	public void fillFromDto(PizzaDTO pizzaDto) {
 		
 		setNome(pizzaDto.getNome());
 		setDescrizione(pizzaDto.getDescrizione());
+		setFoto(pizzaDto.getFoto());
 		setPrezzo(pizzaDto.getPrezzo());
 	}
 
